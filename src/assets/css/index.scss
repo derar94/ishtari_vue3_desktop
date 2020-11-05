@@ -1,0 +1,105 @@
+@import "~bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/functions";
+@import "./fontello.css";
+@import "./animation.css";
+@font-face {
+    font-family: Promixa Nova;
+    src: url("../font/Proxima-Nova-Regular.otf");
+}
+
+$ishtari: #bf1b26;
+$ishtari-invert: findColorInvert($ishtari);
+$ishtari-blue: #3866df;
+$ishtari-blue-invert: findColorInvert($ishtari-blue);
+$ishtari-green: #0AFF46;
+$ishtari-green-invert: findColorInvert($ishtari-green);
+$ishtari-yellow: #FFD33D;
+$ishtari-yellow-invert: findColorInvert($ishtari-yellow);
+$ishtari-grey: #f7f9fe;
+$ishtari-grey-invert: findColorInvert($ishtari-grey);
+@import "~bulma/sass/utilities/derived-variables";
+$addColors: ("ishtari":($ishtari, $ishtari-invert),
+"ishtari-blue":($ishtari-blue, $ishtari-blue-invert),
+"ishtari-yellow":($ishtari-yellow, $ishtari-yellow-invert),
+"ishtari-grey":($ishtari-grey, $ishtari-green-invert),
+);
+$colors: map-merge($colors,
+$addColors);
+@import '~bulma/bulma';
+* {
+    font-family: Promixa Nova, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@media (min-width: 1216px) {
+    .container {
+        margin: 0 auto;
+        width: 97% !important;
+        max-width: 1440px !important;
+    }
+}
+
+i {
+    color: white
+}
+
+.banner:hover {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: all 300ms;
+}
+.minh{
+    background:#f7f9fe;
+    min-height: calc(100vh - 146px);
+}
+// Loader
+.ishtari-loader {
+    display: block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    top:calc(50vh - 146px)
+  }
+  .ishtari-loader div {
+    position: absolute;
+    border: 4px solid $ishtari;
+    opacity: 1;
+    border-radius: 50%;
+    animation: ishtari-loader 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+  .ishtari-loader div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+  @keyframes ishtari-loader {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+//   Loader End
+
+::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #ccc;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
