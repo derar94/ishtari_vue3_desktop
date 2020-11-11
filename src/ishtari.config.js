@@ -10,6 +10,7 @@ const main_urls =
     "manufacturer": base_host + "motor/v1/index.php?route=catalog/manufacturer&manufacturer_id=",
     "seller": base_host + "motor/v1/index.php?route=catalog/seller&seller_id=",
     "filter": base_host + "motor/v1/index.php?route=catalog/filter_product",
+    "product": base_host + "motor/v1/index.php?route=catalog/product&product_id=",
 
     'fb_login': base_host + 'motor/v1/index.php?route=account/login/sociallogin',
     'coupon': base_host + 'motor/v1/index.php?route=checkout/cart/coupon',

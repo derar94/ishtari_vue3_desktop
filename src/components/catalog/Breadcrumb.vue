@@ -1,11 +1,12 @@
 <template>
-  <nav class="breadcrumb has-succeeds-separator is-marginless" aria-label="breadcrumbs">
+  <nav
+    class="breadcrumb has-succeeds-separator is-marginless"
+    aria-label="breadcrumbs"
+  >
     <ul>
       <li><router-link class="" to="/">Home</router-link></li>
       <li v-for="bread in breadcrumbs" :key="bread.text">
-        <router-link
-          :to="{ name: bread.type, params: { id: bread.id } }"
-        >
+        <router-link :to="{ name: bread.type, params: { id: bread.id } }">
           {{ parse(bread.text) }}</router-link
         >
       </li>
@@ -19,7 +20,6 @@ export default {
   props: ["breadcrumbs"],
 
   methods: {
-  
     parse(str) {
       if (str) {
         return str

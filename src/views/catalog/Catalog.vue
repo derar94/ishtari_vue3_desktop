@@ -31,6 +31,7 @@
             </div>
             <!-- Sun Categories -->
           </div>
+          <filters-slider></filters-slider>
           <categories-slider
             class="mb-5"
             v-if="
@@ -38,6 +39,7 @@
               data.categories.length > 0
             "
             :data="data.categories"
+            :container="false"
           ></categories-slider>
           <!-- Products -->
           <product-list :data="data.products"></product-list>
@@ -60,6 +62,7 @@ import CategoriesSlider from "@/components/catalog/CategoriesSlider";
 import ProductList from "@/components/catalog/ProductList";
 import Controls from "@/components/catalog/Controls";
 import CatalogFilter from "@/components/catalog/CatalogFilter";
+import FiltersSlider from "@/components/catalog/FiltersSlider";
 
 import { mapActions, mapGetters, mapMutations } from "vuex";
 export default {
@@ -70,14 +73,15 @@ export default {
     ProductList,
     Controls,
     CatalogFilter,
+    FiltersSlider,
   },
   //
 
   watch: {
     "$route.params.id": function () {
+      this.CLEAR_STATE();
       this.SET_PAGE_TYPE(this.pageType);
       this.SET_PAGE_ID(this.pageId);
-
       this.getData();
     },
   },
@@ -109,6 +113,7 @@ export default {
     ...mapMutations({
       SET_PAGE_TYPE: "catalog/SET_PAGE_TYPE",
       SET_PAGE_ID: "catalog/SET_PAGE_ID",
+      CLEAR_STATE: "catalog/CLEAR_STATE",
     }),
     parse(str) {
       if (str) {

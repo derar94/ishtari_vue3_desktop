@@ -93,23 +93,5 @@ export default {
   justify-content: flex-start;
   align-items: center;
 }
-.discountWrapper {
-  color: rgb(56, 174, 4);
-  text-transform: uppercase;
-  font-size: 9px;
-  font-weight: bold;
-  padding: 0px 4px;
-  position: relative;
-  display: inline-block;
-  line-height: 16px;
-}
-.discountWrapper .bg {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  bottom: 0px;
-  right: 0px;
-  opacity: 0.2;
-  background-color: rgb(56, 174, 4);
-}
+
 </style>

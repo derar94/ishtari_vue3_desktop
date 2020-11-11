@@ -14,7 +14,7 @@ const getData = async (payload) => {
         )
     }
     else {
-        return await axios.get(
+        let res = await axios.get(
             main_urls[payload.pageType]
             + '&page='
             + payload.page
@@ -28,6 +28,9 @@ const getData = async (payload) => {
             + payload.pageId
             + payload.filter_string
         )
+        res.data['data'] = res.data['product_filters']
+        delete res.data['product_filters']
+        return res.data
     }
 }
 

@@ -20,12 +20,18 @@ const cart = {
             commit('SET_LOADING', true)
             await cart_requests.getCartProducts().then((response) => {
                 let data = response.data
-                response.data['productsCount'] = data.error != 'undefined' ? "0" : response.data.products.length
+                response.data['productsCount'] = !data.success ? "0" : data.data.products.length
 
                 commit('SET_CART_PRODUCTS', response.data)
                 commit('SET_LOADING', false)
             })
 
+        },
+        async addToCart({ dispatch, commit }, payload) {
+            commit('SET_LOADING', true)
+            await cart_requests.addToCart(payload).then(() => {
+                dispatch('getCartProducts')
+            })
         }
     },
     getters: {
