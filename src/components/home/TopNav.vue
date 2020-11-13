@@ -48,11 +48,11 @@ export default {
     return {
       topIcons: [
         {
-          icon: "dollar",
+          icon: "money",
           text: "BEST DEALS",
         },
         {
-          icon: "undo",
+          icon: "ccw",
           text: "FREE & EASY RETURNS",
         },
         {

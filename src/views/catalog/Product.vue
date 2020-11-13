@@ -1,5 +1,5 @@
 <template>
-  <div id="cart_over" v-if="showPanel">
+  <div id="cart_over" v-if="showPanel" @click="showPanel = false">
     <div id="cart_panel">
       <div class="is-flex">
         <img :src="Productdata['product'].thumb" />
@@ -59,6 +59,8 @@
       </div>
     </div>
   </div>
+    <ishtari-loader v-if="loading"> </ishtari-loader>
+
   <div class="minh" v-if="ready && !notFound">
     <div class="has-background-white">
       <div class="container">
@@ -225,10 +227,16 @@ import ProductImages from "@/components/catalog/ProductImages";
 import Breadcrumb from "@/components/catalog/Breadcrumb";
 import InSameSeries from "@/components/catalog/InSameSeries";
 import CategoriesSlider from "@/components/catalog/CategoriesSlider";
+import IshtariLoader from "@/components/IshtariLoader";
 
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+    watch: {
+    "$route.params.id": function () {
+      this.initProduct()
+    },
+  },
   data: () => {
     return {
       Productdata: {},
@@ -238,6 +246,7 @@ export default {
       showOptionBorder: false,
       quan: 0,
       showPanel: false,
+      loading:true
     };
   },
   components: {
@@ -245,17 +254,10 @@ export default {
     Breadcrumb,
     InSameSeries,
     CategoriesSlider,
+    IshtariLoader
   },
   mounted() {
-    productRequests.getData(this.productId).then((response) => {
-      if (!response.data["product"]["error"]) {
-        this.Productdata = response.data;
-        this.ready = true;
-      } else {
-        console.log("here");
-        this.notFound = true;
-      }
-    });
+this.initProduct();
   },
   computed: {
     productId: function () {
@@ -269,6 +271,17 @@ export default {
     ...mapActions({
       addToCart: "cart/addToCart",
     }),
+    initProduct(){
+    productRequests.getData(this.productId).then((response) => {
+      if (!response.data["product"]["error"]) {
+        this.Productdata = response.data;
+        this.ready = true;
+      } else {
+        this.notFound = true;
+      }
+      this.loading = false;
+    });
+    },
     check() {
       if (this.Productdata["product"]["options"].length) {
         if (this.selectedOption != "") {
@@ -438,5 +451,6 @@ export default {
   top: 0;
   background: white;
   padding: 15px 10px;
+  min-height: 100vh;
 }
 </style>

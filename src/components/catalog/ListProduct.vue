@@ -1,5 +1,8 @@
 <template>
+
   <div class="listProduct mb-3">
+<router-link :to="{name:'product',params:{id:data.product_id}}">
+
     <ishtari-image :src="data.thumb" :alt="data.name" />
     <p class="productName">
       {{ parse(data.name) }}
@@ -32,7 +35,10 @@
         22% off
       </span>
     </div>
+</router-link>
+
   </div>
+
 </template>
 
 
@@ -63,6 +69,7 @@ export default {
   max-width: 19%;
   background: white;
   padding: 12px 6px;
+  display: block;
 }
 .productName {
   font-size: 13px;
@@ -92,6 +99,9 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+p{
+  color:black
 }
 
 </style>

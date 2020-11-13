@@ -1,12 +1,12 @@
 <template>
-  <div :class="container ? 'container' : ''">
+  <div :class="container ? 'container' : ''" style="padding:15px 0">
     <h2>{{ title || "" }}</h2>
     <div id="categoriesSlider " class="has-background-white scrollable">
       <router-link
         v-for="(category, index) in data"
         :key="index"
         class="category"
-        :to="'/category/' + category.id"
+        :to="{name:'category',params:{id:category.id || category.category_id}}"
       >
         <ishtari-image
           :src="category.thumb || category.image"
@@ -64,7 +64,5 @@ h2 {
   margin: 20px 0;
   font-weight: bold;
 }
-.container {
-  padding: 15px 0;
-}
+#categoriesSlider{}
 </style>

@@ -3,6 +3,8 @@ import Home from '@/views/Home.vue'
 import store from "@/store"
 const Catalog = () => import('@/views/catalog/Catalog.vue')
 const Product = () => import('@/views/catalog/Product.vue')
+const Cart = () => import('@/views/checkout/Cart.vue')
+
 const routes = [
     {
         path: '/',
@@ -29,6 +31,12 @@ const routes = [
         path: '/product/:id',
         name: 'product',
         component: Product
+    },
+    // Checkout
+    {
+        path: '/cart',
+        name: 'cart',
+        component: Cart
     }
 
 
@@ -58,5 +66,6 @@ router.beforeEach((to) => {
         }
 
     }
+    window.scrollTo(0,0)
 })
 export default router
